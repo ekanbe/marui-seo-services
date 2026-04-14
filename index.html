@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>サービス提供範囲</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Helvetica Neue", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      color: #1a1a1a;
+      background: #f8f9fa;
+      line-height: 1.8;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .subtitle {
+      text-align: center;
+      color: #555;
+      font-size: 15px;
+      margin-bottom: 48px;
+    }
+
+    /* フロー図 */
+    .flow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    .flow-step {
+      background: #fff;
+      border: 2px solid #2563eb;
+      border-radius: 12px;
+      padding: 16px 28px;
+      text-align: center;
+      min-width: 180px;
+    }
+    .flow-step .label {
+      font-size: 12px;
+      color: #2563eb;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .flow-step .name {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+    .flow-step .desc {
+      font-size: 13px;
+      color: #666;
+      margin-top: 4px;
+    }
+    .flow-arrow {
+      font-size: 24px;
+      color: #2563eb;
+      font-weight: 700;
+    }
+
+    /* セクション */
+    .section {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    .section-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .section-icon.seo { background: #dbeafe; }
+    .section-icon.cro { background: #dcfce7; }
+    .section-icon.line { background: #fce7f3; }
+    .section-icon.note { background: #fef3c7; }
+    .section-icon.req { background: #e0e7ff; }
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .section-title-sub {
+      font-size: 13px;
+      color: #888;
+    }
+
+    /* テーブル */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    thead th {
+      text-align: left;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: #888;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    tbody td {
+      padding: 12px;
+      border-bottom: 1px solid #f5f5f5;
+      vertical-align: top;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    .category {
+      font-weight: 700;
+      color: #333;
+      white-space: nowrap;
+    }
+
+    /* ステータスバッジ */
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .badge.ok {
+      background: #dcfce7;
+      color: #166534;
+    }
+    .badge.partial {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    .badge.ng {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+    .badge.experiment {
+      background: #ede9fe;
+      color: #5b21b6;
+    }
+
+    /* 実装可否の凡例 */
+    .legend {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+      justify-content: center;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #555;
+    }
+
+    /* 必須環境セクション */
+    .req-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .req-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      background: #f8f9fa;
+      border-radius: 10px;
+    }
+    .req-icon {
+      width: 36px;
+      height: 36px;
+      background: #2563eb;
+      color: #fff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .req-name {
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .req-desc {
+      font-size: 13px;
+      color: #666;
+      margin-top: 2px;
+    }
+
+    /* 注記 */
+    .note-box {
+      padding: 20px 24px;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+    .note-box.yellow { background: #fffbeb; border-left: 4px solid #f59e0b; }
+    .note-box.red { background: #fef2f2; border-left: 4px solid #ef4444; }
+    .note-box.purple { background: #f5f3ff; border-left: 4px solid #8b5cf6; }
+    .note-box.blue { background: #eff6ff; border-left: 4px solid #2563eb; }
+
+    /* 料金の訴求カード */
+    .price-card {
+      margin-top: 20px;
+      padding: 24px;
+      background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%);
+      border: 2px solid #2563eb;
+      border-radius: 12px;
+    }
+    .price-card-label {
+      display: inline-block;
+      padding: 4px 12px;
+      background: #2563eb;
+      color: #fff;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+    .price-card-headline {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .price-card-headline .strike {
+      color: #888;
+      text-decoration: line-through;
+      font-weight: 500;
+      font-size: 16px;
+    }
+    .price-card-headline .highlight {
+      color: #2563eb;
+      font-size: 22px;
+    }
+    .price-card-body {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+    }
+    .note-box strong { display: block; margin-bottom: 6px; }
+    .note-box + .note-box { margin-top: 12px; }
+
+    /* 実績カード */
+    .case-card {
+      padding: 24px;
+      background: #f8f9fa;
+      border-radius: 12px;
+      border-left: 4px solid #2563eb;
+    }
+    .case-card + .case-card { margin-top: 16px; }
+    .case-meta {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .case-tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      background: #dbeafe;
+      color: #1e40af;
+    }
+    .case-challenge {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 12px;
+    }
+    .case-challenge strong { color: #333; }
+    .case-actions {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 16px;
+    }
+    .case-actions strong { color: #333; }
+    .case-result {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: #fff;
+      border-radius: 8px;
+      flex-wrap: wrap;
+    }
+    .case-result-label {
+      font-size: 12px;
+      color: #888;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .case-result-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: #2563eb;
+    }
+    .case-result-detail {
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* 運用者プロフィール */
+    .profile-card {
+      display: flex;
+      gap: 24px;
+      padding: 24px;
+      background: #f8f9fa;
+      border-radius: 12px;
+    }
+    .profile-card + .profile-card { margin-top: 16px; }
+    .profile-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: #2563eb;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .profile-name {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .profile-role {
+      font-size: 13px;
+      color: #2563eb;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .profile-career {
+      list-style: none;
+      padding: 0;
+    }
+    .profile-career li {
+      padding: 6px 0;
+      padding-left: 24px;
+      position: relative;
+      font-size: 14px;
+      color: #444;
+      line-height: 1.6;
+    }
+    .profile-career li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 13px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #2563eb;
+    }
+    .profile-career li + li::after {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: -6px;
+      width: 2px;
+      height: 14px;
+      background: #cbd5e1;
+    }
+    .profile-clients {
+      margin-top: 12px;
+      padding: 12px 16px;
+      background: #fff;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #555;
+    }
+    .profile-clients strong {
+      color: #333;
+    }
+
+    .detail-list {
+      list-style: none;
+      padding: 0;
+    }
+    .detail-list li {
+      padding: 4px 0;
+      padding-left: 20px;
+      position: relative;
+      font-size: 14px;
+      color: #444;
+    }
+    .detail-list li::before {
+      content: "·";
+      position: absolute;
+      left: 6px;
+      font-weight: 700;
+      color: #999;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 24px 16px; }
+      h1 { font-size: 20px; }
+      .subtitle { font-size: 13px; margin-bottom: 32px; }
+
+      /* フロー図 */
+      .flow { flex-direction: column; gap: 8px; margin-bottom: 32px; }
+      .flow-step { min-width: auto; width: 100%; padding: 12px 16px; }
+      .flow-step .name { font-size: 18px; }
+      .flow-arrow { transform: rotate(90deg); font-size: 18px; }
+
+      /* 凡例 */
+      .legend { gap: 8px; }
+      .legend-item { font-size: 12px; }
+
+      /* セクション */
+      .section { padding: 20px 16px; margin-bottom: 16px; }
+      .section-header { gap: 10px; margin-bottom: 16px; padding-bottom: 12px; }
+      .section-icon { width: 40px; height: 40px; font-size: 18px; }
+      .section-title { font-size: 16px; }
+      .section-title-sub { font-size: 12px; }
+
+      /* テーブル → カード型に変換 */
+      table, thead, tbody, th, td, tr { display: block; }
+      thead { display: none; }
+      tbody tr {
+        padding: 16px 0;
+        border-bottom: 1px solid #f0f0f0;
+      }
+      tbody tr:last-child { border-bottom: none; }
+      tbody td {
+        padding: 4px 0;
+        border-bottom: none;
+      }
+      td.category {
+        font-size: 15px;
+        margin-bottom: 8px;
+      }
+      td:last-child { margin-top: 8px; }
+
+      /* 実績 */
+      .case-card { padding: 20px 16px; }
+      .case-result { flex-direction: column; align-items: flex-start; gap: 4px; }
+      .case-result-value { font-size: 16px; }
+
+      /* プロフィール */
+      .profile-card { flex-direction: column; gap: 16px; padding: 20px 16px; }
+      .profile-avatar { width: 56px; height: 56px; font-size: 22px; }
+      .profile-name { font-size: 16px; }
+      .profile-clients { font-size: 12px; }
+
+      /* 必須環境 */
+      .req-list { grid-template-columns: 1fr; gap: 12px; }
+      .req-item { padding: 12px; }
+
+      /* 注記 */
+      .note-box { padding: 16px; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <h1>サービス提供範囲</h1>
+  <p class="subtitle">提案から実装まで一気通貫で対応。集客 → 転換 → 育成の導線を設計します。</p>
+
+  <!-- フロー図 -->
+  <div class="flow">
+    <div class="flow-step">
+      <div class="label">SEO</div>
+      <div class="name">集める</div>
+      <div class="desc">検索からの流入を増やす</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="label">CRO</div>
+      <div class="name">転換する</div>
+      <div class="desc">CVを最大化する</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="label">LINE</div>
+      <div class="name">育てる</div>
+      <div class="desc">リピート・LTV向上</div>
+    </div>
+  </div>
+
+  <!-- 凡例 -->
+  <div class="legend">
+    <div class="legend-item"><span class="badge ok">対応可</span> 提案＋実装まで対応</div>
+    <div class="legend-item"><span class="badge partial">提案のみ</span> 提案・方針策定まで</div>
+    <div class="legend-item"><span class="badge experiment">検証段階</span> 共同検証で対応</div>
+    <div class="legend-item"><span class="badge ng">対応不可</span> 現在お受けしていません</div>
+  </div>
+
+  <!-- SEO -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon seo">🔍</div>
+      <div>
+        <div class="section-title">SEO（検索エンジン最適化）</div>
+        <div class="section-title-sub">戦略策定から施策の実装・記事制作まで対応</div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr><th style="width:160px">領域</th><th>対応内容</th><th style="width:90px">対応</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="category">戦略・分析</td>
+          <td>
+            <ul class="detail-list">
+              <li>SEO現状監査（テクニカル・コンテンツ・外部 全領域）</li>
+              <li>KW調査・検索意図分析・コンテンツ戦略設計</li>
+              <li>競合ドメイン比較・SERP分析</li>
+              <li>施策優先度のロードマップ策定</li>
+              <li>GA4・Search Console分析・月次レポート</li>
+            </ul>
+          </td>
+          <td><span class="badge ok">対応可</span></td>
+        </tr>
+        <tr>
+          <td class="category">テクニカルSEO</td>
+          <td>
+            <ul class="detail-list">
+              <li>サイト構造設計・内部リンク最適化</li>
+              <li>Core Web Vitals改善（LCP・CLS・INP）</li>
+              <li>構造化データ（JSON-LD）実装</li>
+              <li>クロール最適化（robots.txt・サイトマップ・canonical）</li>
+              <li>インデックス管理・重複コンテンツ対策</li>
+              <li>モバイル最適化</li>
+            </ul>
+          </td>
+          <td><span class="badge ok">対応可</span></td>
+        </tr>
+        <tr>
+          <td class="category">コンテンツSEO</td>
+          <td>
+            <ul class="detail-list">
+              <li>記事の企画・構成・執筆・リライト</li>
+              <li>タイトル・meta description最適化</li>
+              <li>E-E-A-T強化（著者情報・監修者設置・一次情報の組み込み）</li>
+              <li>コンテンツクラスター・ピラー戦略設計</li>
+            </ul>
+          </td>
+          <td><span class="badge ok">対応可</span></td>
+        </tr>
+        <tr>
+          <td class="category">外部SEO</td>
+          <td>
+            <ul class="detail-list">
+              <li>被リンクプロファイル分析・有害リンクのdisavow</li>
+              <li>自然リンク獲得のための施策提案</li>
+            </ul>
+          </td>
+          <td><span class="badge ok">対応可</span></td>
+        </tr>
+        <tr>
+          <td class="category">GEO / MEO</td>
+          <td>
+            <ul class="detail-list">
+              <li>AI検索（ChatGPT・Perplexity等）への露出対策</li>
+              <li>Googleビジネスプロフィール最適化</li>
+              <li>※アルゴリズムが未確立のため、成果の確約はできません</li>
+            </ul>
+          </td>
+          <td><span class="badge experiment">検証段階</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CRO -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon cro">📈</div>
+      <div>
+        <div class="section-title">CRO（コンバージョン率最適化）</div>
+        <div class="section-title-sub">今ある流入を最大限に活かし、CVを増やす</div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr><th style="width:160px">領域</th><th>対応内容</th><th style="width:90px">対応</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="category">データ分析</td>
+          <td>
+            <ul class="detail-list">
+              <li>GA4によるファネル分析・離脱ポイント特定</li>
+              <li>ヒートマップ・セッション録画分析（Microsoft Clarity）</li>
+              <li>ユーザー行動に基づく改善仮説の立案</li>
+            </ul>
+          </td>
+          <td><span class="badge ok">対応可</span></td>
+        </tr>
+        <tr>
+          <td class="category">施策実装</td>
+          <td>
+            <ul class="detail-list">
+              <li>CTA・導線設計の改善実装</li>
+              <li>フォーム最適化（EFO）の実装</li>
+              <li>A/Bテスト設計・実施・結果分析</li>
+              <li>ページ構成・コピーの改善</li>
+            </ul>
+          </td>
+          <td><span class="badge ok">対応可</span></td>
+        </tr>
+        <tr>
+          <td class="category">デザインを伴う改善</td>
+          <td>
+            <ul class="detail-list">
+              <li>LP・バナー・ビジュアルのデザイン制作</li>
+              <li>HP（ホームページ）のデザインリニューアル</li>
+            </ul>
+          </td>
+          <td><span class="badge ng">対応不可</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- LINE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon line">💬</div>
+      <div>
+        <div class="section-title">LINE公式アカウント運用</div>
+        <div class="section-title-sub">ハーネスを活用した構築・運用</div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr><th style="width:160px">領域</th><th>対応内容</th><th style="width:90px">対応</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="category">アカウント設計</td>
+          <td>
+            <ul class="detail-list">
+              <li>アカウント開設・初期設定</li>
+              <li>リッチメニュー設計</li>
+              <li>あいさつメッセージ・自動応答の設計</li>
+              <li>ハーネスによる配信基盤の構築</li>
+            </ul>
+          </td>
+          <td><span class="badge ok">対応可</span></td>
+        </tr>
+        <tr>
+          <td class="category">配信運用</td>
+          <td>
+            <ul class="detail-list">
+              <li>配信カレンダー・コンテンツ企画</li>
+              <li>セグメント配信・ステップ配信のシナリオ設計</li>
+              <li>配信効果測定・改善提案</li>
+              <li>友だち獲得導線の設計</li>
+            </ul>
+          </td>
+          <td><span class="badge ok">対応可</span></td>
+        </tr>
+        <tr>
+          <td class="category">コンテンツ制作</td>
+          <td>
+            <ul class="detail-list">
+              <li>配信メッセージのビジュアルデザイン制作</li>
+              <li>リッチメニューのデザイン制作</li>
+            </ul>
+          </td>
+          <td><span class="badge ng">対応不可</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 運用者プロフィール -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: #f0f9ff;">👤</div>
+      <div>
+        <div class="section-title">運用者プロフィール</div>
+        <div class="section-title-sub">大手SEO企業出身のマネージャークラスが直接対応します</div>
+      </div>
+    </div>
+
+    <div class="profile-card">
+      <div class="profile-avatar">M</div>
+      <div>
+        <div class="profile-name">Member 01</div>
+        <div class="profile-role">SEO / CRO / データ分析</div>
+        <ul class="profile-career">
+          <li>ECベンチャーにて、ブランド商品の企画開発からCRM運用まで一気通貫で担当</li>
+          <li>業界最大手SEO企業にてマネージャーを歴任。約20名の部下をマネジメント</li>
+        </ul>
+        <div class="profile-clients">
+          <strong>支援実績：</strong>NPO・医療・美容・不動産など、大手企業から中小企業まで50社以上を支援
+        </div>
+      </div>
+    </div>
+
+    <div class="price-card">
+      <span class="price-card-label">料金について</span>
+      <div class="price-card-headline">
+        前職で <span class="strike">定価80万〜100万円</span> で提供していたサービスを、<br>
+        最低 <span class="highlight">10万円〜</span> でお受けしています。
+      </div>
+      <div class="price-card-body">
+        独立後間もないため、個人としての実績を積ませていただく期間として特別価格でご提供しています。<br>
+        提供する分析・施策の品質は前職時代と同等です。
+      </div>
+    </div>
+  </div>
+
+  <!-- 支援実績 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: #ecfdf5;">✅</div>
+      <div>
+        <div class="section-title">支援実績</div>
+        <div class="section-title-sub">大手企業から中小企業まで50社以上の支援実績</div>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-meta">
+        <span class="case-tag">国際NPO法人</span>
+        <span class="case-tag">コンテンツSEO</span>
+      </div>
+      <div class="case-challenge">
+        <strong>課題：</strong>最重要キーワードで10位圏外。ブランド認知はあるが検索経由の流入を活かしきれていなかった。
+      </div>
+      <div class="case-actions">
+        <strong>施策：</strong>対策ページの構成見直し・コンテンツ強化、E-E-A-Tを活かした権威性の訴求設計。
+      </div>
+      <div class="case-result">
+        <div>
+          <div class="case-result-label">成果</div>
+          <div class="case-result-value">最重要KW 圏外 → 1位獲得・維持</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-meta">
+        <span class="case-tag">美容業界 上場企業</span>
+        <span class="case-tag">テクニカル × コンテンツ</span>
+      </div>
+      <div class="case-challenge">
+        <strong>課題：</strong>大量のページが重複し、検索エンジンの評価が分散。メディア流入が伸び悩んでいた。
+      </div>
+      <div class="case-actions">
+        <strong>施策：</strong>ページ重複の解消、内部リンク再設計、既存30本のリライト＋新規記事制作。
+      </div>
+      <div class="case-result">
+        <div>
+          <div class="case-result-label">成果</div>
+          <div class="case-result-value">月間 2,000 → 10,000 セッション（5倍）</div>
+          <div class="case-result-detail">6ヶ月で達成</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-meta">
+        <span class="case-tag">住宅・エクステリア業界</span>
+        <span class="case-tag">テクニカルSEO</span>
+      </div>
+      <div class="case-challenge">
+        <strong>課題：</strong>サイト上のネガティブ要素がGoogleの評価を妨げており、順位・流入が伸び悩んでいた。
+      </div>
+      <div class="case-actions">
+        <strong>施策：</strong>ネガティブ要素を早期に特定・改善し、順位・流入数の底上げ施策を実施。
+      </div>
+      <div class="case-result">
+        <div>
+          <div class="case-result-label">成果</div>
+          <div class="case-result-value">CV数 前年比 200%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-meta">
+        <span class="case-tag">買取業界</span>
+        <span class="case-tag">コンテンツSEO</span>
+      </div>
+      <div class="case-challenge">
+        <strong>課題：</strong>主力キーワード「金買取」で30位水準。競合が多く上位表示が難しい状況。
+      </div>
+      <div class="case-actions">
+        <strong>施策：</strong>対策ページ自体の品質強化に加え、周辺キーワードの網羅的なコンテンツ設計で領域全体の評価を向上。
+      </div>
+      <div class="case-result">
+        <div>
+          <div class="case-result-label">成果</div>
+          <div class="case-result-value">「金買取」30位 → 5位圏内を維持</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 必須環境 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon req">⚙</div>
+      <div>
+        <div class="section-title">ご契約時の必須環境</div>
+        <div class="section-title-sub">以下のツールの編集権限・API連携をお願いしています</div>
+      </div>
+    </div>
+    <div class="req-list">
+      <div class="req-item">
+        <div class="req-icon">G</div>
+        <div>
+          <div class="req-name">Google Analytics 4</div>
+          <div class="req-desc">編集権限の付与 + API連携</div>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon">S</div>
+        <div>
+          <div class="req-name">Google Search Console</div>
+          <div class="req-desc">編集権限の付与 + API連携</div>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon">C</div>
+        <div>
+          <div class="req-name">Microsoft Clarity</div>
+          <div class="req-desc">編集権限の付与</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 注記 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon note">📋</div>
+      <div>
+        <div class="section-title">ご留意事項</div>
+      </div>
+    </div>
+    <div class="note-box yellow">
+      <strong>デザイン制作について</strong>
+      HP・LP・バナー・画像コンテンツなど、デザインを伴う制作業務は対応しておりません。テキストベースの施策提案・実装、テクニカル施策の実装は対応可能です。
+    </div>
+    <div class="note-box red">
+      <strong>DB型サイトについて</strong>
+      データベース型サイト（大規模ECモール・ポータルサイト等）は現在お受けしておりません。
+    </div>
+    <div class="note-box purple">
+      <strong>GEO・MEOについて</strong>
+      対応は可能ですが、アルゴリズムが未確立の領域のため成果をお約束するものではありません。データに基づく検証を一緒に進めていく形でのご支援となります。
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
